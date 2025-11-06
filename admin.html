@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MangaNova — Админка</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+    <header class="top-bar">
+  <a href="index.html" class="logo">MANGANOVA</a>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-link">Главная</a>
+    <a href="catalog.html" class="nav-link">Каталог</a>
+    <a href="catalog.html#search" class="nav-link">Поиск</a>
+    <a href="admin.html" class="nav-link nav-link-active nav-link-secondary">
+      Админка
+    </a>
+  </nav>
+</header>
+
+
+      <main class="main">
+        <!-- Добавить мангу -->
+        <section id="add-manga-section" class="add-manga">
+          <h2 class="page-title">Добавить мангу</h2>
+          <form id="add-manga-form" class="add-manga-form">
+            <label class="field">
+              <span>Название манги</span>
+              <input type="text" id="new-manga-title" required />
+            </label>
+
+            <label class="field">
+              <span>Описание</span>
+              <textarea
+                id="new-manga-description"
+                rows="3"
+                required
+              ></textarea>
+            </label>
+
+            <label class="field">
+              <span>Теги (через запятую)</span>
+              <input
+                type="text"
+                id="new-manga-tags"
+                placeholder="Экшен, Приключения"
+              />
+            </label>
+
+            <label class="field">
+              <span>Название первой главы</span>
+              <input
+                type="text"
+                id="new-chapter-title"
+                value="Глава 1"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Страницы главы (картинки)</span>
+              <input
+                type="file"
+                id="new-chapter-pages"
+                accept="image/*"
+                multiple
+                required
+              />
+            </label>
+
+            <button type="submit" class="read-btn">Сохранить мангу</button>
+            <p class="hint">
+              ⚠ Данные сохраняются на сервере в файле
+              <code>data/manga.json</code>.
+            </p>
+          </form>
+        
+        <!-- Добавить главу к существующей манге -->
+        <section id="add-chapter-section" class="add-manga">
+          <h2 class="page-title">Добавить главу к манге</h2>
+          <form id="add-chapter-form" class="add-manga-form">
+            <label class="field">
+              <span>Выбери мангу</span>
+              <select id="chapter-manga-select"></select>
+            </label>
+
+            <label class="field">
+              <span>Название главы</span>
+              <input
+                type="text"
+                id="new-chapter2-title"
+                value="Новая глава"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Страницы главы (картинки)</span>
+              <input
+                type="file"
+                id="new-chapter2-pages"
+                accept="image/*"
+                multiple
+                required
+              />
+            </label>
+
+            <button type="submit" class="read-btn">Добавить главу</button>
+            <p class="hint">
+              ⚠ Картинки сохраняются в папке <code>uploads/</code>, ссылки на
+              них — в <code>manga.json</code>.
+            </p>
+          </form>
+        </section>
+
+        <!-- Управление мангой -->
+        <section id="manage-section" class="add-manga">
+          <h2 class="page-title">Управление мангой</h2>
+          <div id="admin-manga-list" class="admin-manga-list">
+            <!-- Здесь JS нарисует список манги и глав -->
+          </div>
+        </section>
+
+
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
