@@ -1,20 +1,69 @@
+// backend/src/server.js
+
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const mangaRoutes = require('./routes/manga');
+const { mangaList } = require('./mangaData');
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 
+// Разрешаем запросы с фронтенда (http://localhost:5173)
 app.use(cors());
 app.use(express.json());
 
-// статика для картинок глав
-app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+// Простой health-check
+app.get('/', (req, res) => {
+  res.json({ message: 'MANGANOVE API работает' });
+});
 
-// роуты манги
-app.use('/api/manga', mangaRoutes);
+// Список всей манги
+app.get('/api/manga', (req, res) => {
+  const shortList = mangaList.map((manga) => ({
+    id: manga.id,
+    title: manga.title,
+    status: manga.status,
+    totalChapters: manga.totalChapters,
+    description: manga.description,
+  }));
 
+  res.json(shortList);
+});
+
+// Информация о конкретной манге
+app.get('/api/manga/:mangaId', (req, res) => {
+  const { mangaId } = req.params;
+  const manga = mangaList.find((m) => m.id === mangaId);
+
+  if (!manga) {
+    return res.status(404).json({ error: 'Манга не найдена' });
+  }
+
+  // Можно сразу отправлять всё, включая главы
+  res.json(manga);
+});
+
+// Конкретная глава (для читалки)
+app.get('/api/manga/:mangaId/chapters/:chapterId', (req, res) => {
+  const { mangaId, chapterId } = req.params;
+
+  const manga = mangaList.find((m) => m.id === mangaId);
+  if (!manga) {
+    return res.status(404).json({ error: 'Манга не найдена' });
+  }
+
+  const chapter = manga.chapters.find((ch) => ch.id === chapterId);
+  if (!chapter) {
+    return res.status(404).json({ error: 'Глава не найдена' });
+  }
+
+  res.json({
+    mangaId: manga.id,
+    mangaTitle: manga.title,
+    chapter,
+  });
+});
+
+// Запуск сервера
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`MANGANOVE API запущен на http://localhost:${PORT}`);
 });

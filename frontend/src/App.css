@@ -1,42 +1,231 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #f9fafb;
+  background-color: #020617;
+}
+
+.app {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 0.1em;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.subtitle {
+  font-size: 14px;
+  color: #9ca3af;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.content {
+  flex: 1;
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.card {
-  padding: 2em;
+.page-title {
+  font-size: 24px;
+  margin-bottom: 16px;
 }
 
-.read-the-docs {
-  color: #888;
+.section-title {
+  font-size: 18px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.manga-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+}
+
+.manga-cover-placeholder {
+  height: 160px;
+  border-radius: 12px;
+  border: 1px dashed rgba(148, 163, 184, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.manga-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.manga-meta {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.manga-description {
+  font-size: 14px;
+  color: #d1d5db;
+  flex: 1;
+}
+
+.read-button {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #f9fafb;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.read-button:hover {
+  opacity: 0.9;
+}
+
+.read-button.small {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.secondary-button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.secondary-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.footer {
+  padding: 12px 24px;
+  font-size: 12px;
+  color: #6b7280;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+/* Хлебные крошки (навигация) */
+
+.breadcrumb {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.breadcrumb a {
+  color: #a5b4fc;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Список глав */
+
+.chapter-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chapter-item {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chapter-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.chapter-meta {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* Читалка */
+
+.reader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-box {
+  margin-top: 8px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.95);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.reader-controls {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reader-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.reader-page-indicator {
+  font-size: 13px;
+  color: #9ca3af;
 }
