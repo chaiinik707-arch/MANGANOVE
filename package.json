@@ -1,17 +1,10 @@
 {
-  "name": "manga_site",
-  "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --ext .js",
+    "format": "prettier . --write"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "express": "^5.1.0",
-    "multer": "^2.0.2"
+    "axios": "^1.13.2",
+    "react-router-dom": "^7.9.5"
   }
 }
