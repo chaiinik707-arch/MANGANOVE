@@ -601,5 +601,3 @@ function initAdminPage() {
   initReaderPage();  // reader.html
   initAdminPage();   // admin.html
 })();
-
-//Миша, привет
